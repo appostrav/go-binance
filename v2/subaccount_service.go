@@ -1051,7 +1051,7 @@ func (s *DeleteSubAccountApiKeyService) Timestamp(v int64) *DeleteSubAccountApiK
 	return s
 }
 
-func (s *DeleteSubAccountApiKeyService) Do(ctx context.Context, opts ...RequestOption) error {
+func (s *DeleteSubAccountApiKeyService) Do(ctx context.Context, opts ...RequestOption) (res *DeleteResponse, err error) {
 	r := &request{
 		method:   http.MethodDelete,
 		endpoint: "/sapi/v1/broker/subAccountApi",
@@ -1066,9 +1066,14 @@ func (s *DeleteSubAccountApiKeyService) Do(ctx context.Context, opts ...RequestO
 	}
 	r.setParams(m)
 
-	_, err := s.c.callAPI(ctx, r, opts...)
+	data, err := s.c.callAPI(ctx, r, opts...)
+	res = new(DeleteResponse)
+	err = json.Unmarshal(data, res)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return res, nil
+}
+
+type DeleteResponse struct {
 }

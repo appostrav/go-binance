@@ -522,7 +522,7 @@ func (s *subAccountServiceTestSuite) TestDeleteSubAccountApiKeyService() {
 		s.assertRequestEqual(e, r)
 	})
 
-	_, err := s.client.NewDeleteSubAccountApiKeyService().SubAccountID(subaccountId).SubAccountAPIKey(subAccountApiKey).
+	err := s.client.NewDeleteSubAccountApiKeyService().SubAccountID(subaccountId).SubAccountAPIKey(subAccountApiKey).
 		RecvWindow(recvWindow).Timestamp(timestamp).Do(newContext())
 
 	r := s.r()

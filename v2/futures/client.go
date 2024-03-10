@@ -620,3 +620,7 @@ func (c *Client) NewOpenInterestStatisticsService() *OpenInterestStatisticsServi
 func (c *Client) NewLongShortRatioService() *LongShortRatioService {
 	return &LongShortRatioService{c: c}
 }
+
+func (c *Client) NewCustomRequestService() *CustomRequestService {
+	return &CustomRequestService{c: c}
+}
